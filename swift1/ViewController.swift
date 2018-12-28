@@ -33,9 +33,11 @@ class ViewController: UIViewController {
     var s1=Stack<String>()
     var a=[String]()
     var i:Int=0
+    var i1:Double=0
     var sum:Int=0
+    var sum1:Double=0
     var flag:Int=0
-    
+    var caflag=0
     @IBOutlet weak var input: UITextField!
     
     @IBOutlet weak var minimum: UITextField!
@@ -50,47 +52,58 @@ class ViewController: UIViewController {
     
     @IBAction func button1(_ sender: Any) {
         input.text=input.text!+"1"
+        caflag=1
     }
     
     @IBAction func button2(_ sender: Any) {
         input.text=input.text!+"2"
-        
+        caflag=1
     }
     
     @IBAction func button3(_ sender: Any) {
         input.text=input.text!+"3"
-        
+        caflag=1
     }
     
     @IBAction func button4(_ sender: Any) {
         input.text=input.text!+"4"
-        
+        caflag=1
     }
     
     @IBAction func button5(_ sender: Any) {
         input.text=input.text!+"5"
-       
+        caflag=1
     }
     
     @IBAction func button6(_ sender: Any) {
         input.text=input.text!+"6"
-       
+        caflag=1
     }
     
     @IBAction func button7(_ sender: Any) {
         input.text=input.text!+"7"
-      
+       caflag=1
     }
     
     @IBAction func button8(_ sender: Any) {
         input.text=input.text!+"8"
-       
+       caflag=1
     }
     
     @IBAction func button9(_ sender: Any) {
-        input.text=input.text!+"8"
+        input.text=input.text!+"9"
+        caflag=1
     }
     
+    @IBAction func button0(_ sender: Any) {
+         input.text=input.text!+"0"
+        caflag=1
+        
+    }
+    
+    @IBAction func empty(_ sender: Any) {
+        input.text=input.text!+" "
+    }
     @IBAction func min(_ sender: Any) {
         a=input.text!.components(separatedBy: " ")
         
@@ -125,11 +138,23 @@ class ViewController: UIViewController {
             i=i+1
         }
         
-        for _ in 1...i{
-            flag=Int(s1.pop()!)!
-            sum=flag+sum
+        if(caflag==1)
+        {
+            for _ in 1...i
+            {
+                flag=Int(s1.pop()!)!
+                sum=flag+sum
+            }
+            sum1=Double(sum)
+            i1=Double(i)
+            average.text="\(sum1/i1)"
         }
-         average.text="\(sum/i)"
+        
+        if(caflag==0)
+        {
+            average.text=" "
+        }
+    
     }
     
     @IBAction func large_small(_ sender: Any) {
@@ -151,6 +176,16 @@ class ViewController: UIViewController {
         })
         
         small_large.text="\(a)"
+    }
+    
+    @IBAction func Clear(_ sender: Any) {
+        input.text=""
+        small_large.text=""
+        large_small.text=""
+        average.text=""
+        maximum.text=""
+        minimum.text=""
+        sum=0
     }
 }
 
